@@ -1,2 +1,2 @@
 # ProyectoVideoLlamadaPurecloud
-...
+Esta aplicación web fue desarrollada desde cero para iniciar una videollamada con los agentes de call center que se encuentren disponibles o a su vez filtrar por el nombre del agente de prefrencia del cliente. Si el agente se encontraba disponible, el cliente accedia a una sala en la cual, él y el agente podían intercambiar audio y video en tiempo real. Los Lenguajes de Programación utilizados fueron C# y Javascript, también se utilizó la API de PureCloud.
