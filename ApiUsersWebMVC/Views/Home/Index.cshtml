@@ -1,0 +1,235 @@
+﻿@{ var filtro = ViewData["filtro"] as string;
+    var Respuesta = "";
+    switch (filtro)
+    {
+        case "todos":
+            Respuesta = "Todos los Usuarios";
+            break;
+        case "userNoDispo":
+            Respuesta = "Usuarios no Disponibles";
+            break;
+        case "userDispo":
+            Respuesta = "Usuarios Disponibles";
+            break;
+        default:
+            Respuesta = "";
+            break;
+    }
+}
+@using PagedList.Mvc
+@model  PagedList.IPagedList<ApiUsersWebMVC.Models.UsuariosActivos>
+
+
+<div class="container">
+
+
+    <div class="form-group" style="margin-left: 40px">
+        <table>
+            <tr>
+                <td>
+                    <div class="filtro">
+                        <label style="margin-bottom: 5px">Filtrar por: @Respuesta</label>
+
+                        <select class="form-control" style="margin-bottom: 10px; text-align:center;" name="filtro" id="filtro">
+                            <option>----------</option>
+                            <option value="todos">Todos</option>
+                            <option value="userDispo">Usuarios Disponibles</option>
+                            <option value="userNoDispo">UsuariosNoDisponibles</option>
+                        </select>
+
+                        <input style="margin-bottom: 10px" type="button" value="Filtrar" class=" btn btn-success" onclick="filtrar()" />
+
+                    </div>
+                </td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+
+                <td>
+                    <div class="busqueda">
+                        <label style="margin-bottom: 5px">Busqueda por Nombre:</label>
+
+                        <span class="">
+                            <input type="text" id="txtNombreBusqueda" name="txtNombreBusqueda" class="form-row" placeholder="Ingrese el nombre">
+                            <button type="button" class="btn btn-effect-ripple btn-primary" onclick="busqueda()"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+    <div style="text-align:center;display:none;margin-bottom:30px;" id="loaderDiv">
+        <h4>Realizando Videollamada...</h4>
+        <h6>Pronto el asesor lo atenderá, espere por favor</h6>
+        <img src="~/Images/ajax-loader.gif" />
+    </div>
+
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <div class="col-sm-4">
+            <div class="panel" style="margin-bottom: 20px">
+                <div class="panel-body p-t-10">
+                    <div class="media-main">
+
+                        @if (@Model[i].EstadoActual == "On Queue")
+                        {
+                            if (@Model[i].Estado == "Idle")
+                            {
+                                <a class="" id="btnLlamada" href="#">
+                                    <input type="image" src=@Model[i].Imagen name="image" alt="Llamar"
+                                           class="imgRedondaDisponible" onclick="LlamarUsuario('@Model[i].Id')" /><br />
+                                </a>
+
+                                <div class="info">
+                                    <h4>@Model[i].Nombre</h4>
+                                    <p class="text-muted">@Model[i].Correo</p>
+                                    <p class="text-muted">@Model[i].Especialidad</p>
+
+
+                                    <div id="estadoUsuario">
+                                        <p class="text-muted">@Model[i].Estado</p>
+                                        <p class="text-muted">@Model[i].EstadoActual</p>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <a class="" id="btnLlamada" href="#">
+                                    <input type="image" src=@Model[i].Imagen name="image" alt="Llamar"
+                                           class="imgRedondaEnCola" onclick="AlertaOcupado()" /><br />
+                                </a>
+
+                                <div class="info">
+                                    <h4>@Model[i].Nombre</h4>
+                                    <p class="text-muted">@Model[i].Correo</p>
+                                    <p class="text-muted">@Model[i].Especialidad</p>
+
+
+                                    <div id="estadoUsuario">
+                                        <p class="text-muted">@Model[i].Estado</p>
+                                        <p class="text-muted">@Model[i].EstadoActual</p>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                        else
+                        {
+
+                            <input type="image" src=@Model[i].Imagen name="image" alt="Llamar"
+                                   class="imgRedondaNoDisponible" onclick="AlertaNoLLamable()" /><br />
+
+
+                            <div class="info">
+                                <h4>@Model[i].Nombre</h4>
+                                <p class="text-muted">@Model[i].Correo</p>
+                                <p class="text-muted">@Model[i].Especialidad</p>
+
+
+                                <div id="estadoUsuario">
+                                    <p class="text-muted">@Model[i].Estado</p>
+                                    <p class="text-muted">@Model[i].EstadoActual</p>
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <footer>
+        <div id="container" style="margin-left: 20px">
+            <p></p>
+            <p></p>
+            <div class="pagination" style="margin-left: 400px">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                of @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @filtrar = filtro }))
+            </div>
+        </div>
+    </footer>
+</div>
+
+@section scripts{
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/Site.css" rel="stylesheet">
+
+    <script type="text/javascript">
+
+        function filtrar() {
+
+             var filtra = $('#filtro').val();
+             window.location.href = '/Home/Index?filtrar=' + filtra
+            //window.location.href = '/ApiUsersWebMVC/Home/Index?filtrar=' + filtra
+
+        }
+
+        function busqueda() {
+
+            var nombre = $('#txtNombreBusqueda').val();
+            window.location.href = '/Home/Index?nombre=' + nombre
+            //window.location.href = '/ApiUsersWebMVC/Home/Index?nombre=' + nombre
+
+        }
+
+        function LlamarUsuario(id_user) {
+            $("#loaderDiv").show();
+            //ap = "";
+            //tel = "";
+            //cor = "";
+            $.ajax({
+
+
+                type: 'GET',
+                url: '@Url.Action("InicarVideoLlamada", "Home")',
+                data: {
+                    'nombre': id_user
+                    //'nombre': nom,
+                    //'apellido': ap,
+                    //'telefono': tel,
+                    //'email': cor
+                },
+                dataType: "json",
+                success: function (result) {
+                    console.log(result.succes);
+
+                    if (result.success == false) {
+
+                        alert(result.message);
+                        window.location.href = '/Home/Index' 
+                        //window.location.href = '/ApiUsersWebMVC/Home/Index' 
+                    }
+                    else
+                    {
+                        window.location.href = result;
+                        $("#loaderDiv").hide();
+                    }
+                    
+                }
+                
+            });
+        }
+
+        function AlertaOcupado() {
+            alert("El Agente se encuentra ocupado, intente mas tarde");
+            return;
+        }
+
+        function AlertaNoLLamable() {
+            alert("El Agente no se encuentra disponible");
+            return;
+        }
+
+
+    </script>
+}
+

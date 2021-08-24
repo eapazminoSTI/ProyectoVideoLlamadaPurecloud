@@ -1,0 +1,209 @@
+﻿<div class="page-wrapper p-t-275 p-b-100">
+    <div class="wrapper wrapper--w690">
+        <div class="card card-1">
+            <div class="card-body">
+                <form class="wizard-container" method="POST" action="#" id="js-wizard-form">
+                    <div class="progress" id="js-progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
+                            <span class="progress-val">40%</span>
+                        </div>
+                    </div>
+                    <ul class="nav nav-tab">
+                        <li class="active">
+                            <a href="#tab1" data-toggle="tab">1</a>
+                        </li>
+                        <li>
+                            <a href="#tab2" data-toggle="tab">1</a>
+                        </li>
+                        <li>
+                            <a href="#tab3" data-toggle="tab">1</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <div class="input-group">
+                                <div class="form-group center">
+                                    <label class="small mb-1" for="inputName">Nombre</label>
+                                    <input class="form-control py-4 center" id="txtNombre" type="text" placeholder="Ingrese su nombre" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputApe">Apellido</label>
+                                    <input class="form-control py-4 center" id="txtApellido" type="text" placeholder="Ingrese su apellido" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputPhone">Teléfono</label>
+                                    <input class="form-control py-4 center" id="txtTelefono" type="number" placeholder="Ingrese su teléfono" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputEmail">Email</label>
+                                    <input class="form-control py-4 center" id="txtEmail" type="email" placeholder="Ingrese su email" />
+                                </div>
+                            </div>
+                            <div class="btn-next-con">
+                                <a class="btn-next" href="#">Siguiente</a>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab2">
+                            <div class="input-group">
+                                <div class="form-group">
+                                    <label class="small mb-1" style="" for="inputTipoTrámite">Tipo trámite</label>
+                                    <input class="form-control py-4 center" id="txtTipoTramite" type="text" placeholder="Ingrese el tipo de trámite" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputCiudad">Ciudad</label>
+                                    <input class="form-control py-4 center" id="txtCiudad" type="text" placeholder="Ingrese la ciudad" />
+                                </div>
+                            </div>
+                            <div class="btn-next-con">
+                                <a class="btn-back" href="#">Atrás</a>
+                                <a class="btn-next" href="#" onclick="Confirmar()">Siguiente</a>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab3">
+                            <div class="input-group">
+                                <table>
+                                    <tr class="col-md-12">
+                                        <td class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="small mb-1">Nombre</label>
+                                                <label class="form-control py-4 center" id="lblNombre" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="small mb-1">Apellido</label>
+                                                <label class="form-control py-4 center" id="lblApellido" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="small mb-1">Teléfono</label>
+                                                <label class="form-control py-4 center" id="lblTelefono" />
+                                            </div>
+                                        </td>
+
+                                        <td class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="small mb-1">Email</label>
+                                                <label class="form-control py-4 center" id="lblEmail" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="small mb-1">Tipo trámite</label>
+                                                <label class="form-control py-4 center" id="lblTipoTramite" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="small mb-1">Ciudad</label>
+                                                <label class="form-control py-4 center" id="lblCiudad" />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                            
+
+                            <div class="btn-next-con">
+                                <a class="btn-back" href="#">Atrás</a>
+                                <select id="selectAut" class="form-control">
+                                    <option value="inmediato">Contacto Inmediato</option>
+                                    <option value="planificado">Contacto Planificado</option>
+                                </select>
+                                <a id="btnSeleccionar" class="btn-last" href="#" onclick="Redirigir()" style="display: block;">Seleccionar Usuario</a>
+                                <a id="btnWhatsapp" class="btn-last" href="#" onclick="" style="display: none;">Api Whatsapp</a>
+                            </div>
+                        </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/Site.css" rel="stylesheet">
+
+    <!-- Jquery JS-->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="~/Content/vendor/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/Content/vendor/bootstrap-wizard/bootstrap.min.js"></script>
+    <script src="~/Content/vendor/bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+
+    <!-- Main JS-->
+    <script src="~/Scripts/global.js"></script>
+
+    <!-- Icons font CSS-->
+    <link href="~/Content/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="~/Content/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Main CSS-->
+    <link href="~/Content/css/main.css" rel="stylesheet" media="all">
+
+
+    <script>
+
+        $("#selectAut").change(function () {
+
+            var val = "";
+            $("#selectAut option:selected").each(function () {
+
+                val = $(this).val();
+            });
+
+            if (val == "inmediato") {
+                document.getElementById('btnSeleccionar').style.display = 'block';
+                document.getElementById('btnWhatsapp').style.display = 'none';
+            }
+
+            if (val == "planificado") {
+                document.getElementById('btnWhatsapp').style.display = 'block';
+                document.getElementById('btnSeleccionar').style.display = 'none';
+            }
+        });
+
+        function Confirmar() {
+            nom = document.getElementById('txtNombre').value;
+            ap = document.getElementById('txtApellido').value;
+            tel = document.getElementById('txtTelefono').value;
+            cor = document.getElementById('txtEmail').value;
+            tip = document.getElementById('txtTipoTramite').value;
+            ciu = document.getElementById('txtCiudad').value;
+
+            document.getElementById('lblNombre').innerHTML = nom;
+            document.getElementById('lblApellido').innerHTML = ap;
+            document.getElementById('lblTelefono').innerHTML = tel;
+            document.getElementById('lblEmail').innerHTML= cor;
+            document.getElementById('lblTipoTramite').innerHTML= tip;
+            document.getElementById('lblCiudad').innerHTML = ciu;
+        }
+
+        function Redirigir() {
+
+            nom = document.getElementById('txtNombre').value;
+            ap = document.getElementById('txtApellido').value;
+            tel = document.getElementById('txtTelefono').value;
+            cor = document.getElementById('txtEmail').value;
+            $.ajax({
+
+
+                type: 'GET',
+                url: '@Url.Action("Registrar", "Home")',
+                data: {
+                    'nombre': nom,
+                    'apellido': ap,
+                    'telefono': tel,
+                    'email': cor
+                },
+                dataType: "json",
+                success: function (response) {
+
+
+                },
+            });
+            window.location.href = '/Home/Index';
+            //window.location.href = 'ApiUsersWebMVC/Home/Index';
+        }
+    </script>
+
+}

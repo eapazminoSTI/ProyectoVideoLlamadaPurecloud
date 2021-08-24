@@ -1,0 +1,19 @@
+﻿
+<button type="button" onclick="Comprobar()">Comprobar</button>
+
+
+<script type="text/javascript">
+
+
+        function Comprobar() {
+
+            $.getJSON('@Url.Action("Edit", "Prueba")', function (result) {
+                if (result.success) {
+                    alert(result.message);
+                } else {
+                    alert(result.message);
+                }
+            })
+        }
+
+</script>

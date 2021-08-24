@@ -1,0 +1,145 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    background-color: #edf0f0;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px; 
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.btn-primary.focus,
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:hover,
+.open > .dropdown-toggle.btn-primary {
+    background-color: #3bc0c3;
+    border: 1px solid #3bc0c3;
+}
+
+.p-t-10 {
+    padding-top: 10px !important;
+}
+
+.media-main a.pull-left {
+    width: 100px;
+}
+
+.thumb-lg {
+    height: 84px;
+    width: 84px;
+}
+
+.media-main .info {
+    overflow: hidden;
+    color: #000;
+}
+
+    .media-main .info h4 {
+        padding-top: 10px;
+        margin-bottom: 5px;
+    }
+
+.social-links li a {
+    background: #EFF0F4;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    color: #7A7676;
+}
+.imgRedondaDisponible {
+    width: 84px;
+    height: 84px;
+    border-radius: 160px;
+    border: 5px solid forestgreen;
+    margin-left: 116px;
+}
+
+.imgRedondaEnCola {
+    width: 84px;
+    height: 84px;
+    border-radius: 160px;
+    border: 5px solid orange;
+    margin-left: 116px;
+}
+.imgRedondaNoDisponible {
+    width: 84px;
+    height: 84px;
+    border-radius: 160px;
+    border: 5px solid red;
+    margin-left: 116px;
+}
+
+.filtro{
+    text-align:left;
+    margin-left:30px;
+}
+
+.busqueda {
+    text-align: right;
+    margin-right: 30px;
+}
+
+.ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul.pagination li {
+    display: inline;
+}
+
+    ul.pagination li a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+    }
+
+        ul.pagination li a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        ul.pagination li a:hover:not(.active) {
+            background-color: #ddd;
+        }
+
+footer {
+    position: relative;
+    /* Altura total del footer en  px con valor negativo */
+    margin-top: -50px;
+    /* Altura del footer en px. Se han restado los 5px del margen
+               superior mas los 5px del margen inferior
+            */
+    height: 40px;
+    padding: 5px 0px;
+    clear: both;
+}
